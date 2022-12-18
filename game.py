@@ -1,5 +1,5 @@
 from hiragana import Hiragana
-from romanji import Romanji
+from romaji import Romaji
 
 class Game():
     def __init__(self):
@@ -7,15 +7,15 @@ class Game():
 
         self.options = {
             1: "Hiragana to Romanji",
-            2: "Romanji to Hiragana",
+            2: "Romaji to Hiragana",
             3: "Quit"
         }
 
         self.hiragana = Hiragana()
-        self.romanji = Romanji()
+        self.romaji = Romaji()
 
-        self.hiragana_to_romanji = {self.hiragana.values[i]: self.romanji.values[i] for i in range(len(self.romanji.values))}
-        self.romanji_to_hiragana = {self.romanji.values[i]: self.hiragana.values[i] for i in range(len(self.romanji.values))}
+        self.hiragana_to_romanji = {self.hiragana.values[i]: self.romaji.values[i] for i in range(len(self.romaji.values))}
+        self.romaji_to_hiragana = {self.romaji.values[i]: self.hiragana.values[i] for i in range(len(self.romaji.values))}
 
     
     def play(self):
@@ -25,7 +25,7 @@ class Game():
 
     def ask_for_input(self):
         if self.current_option == 0:
-            self.current_option = int(input("Choose option:\n1. Hiragana to Romanji.\n2. Romanji to Hiragana.\n3. Quit\n"))
+            self.current_option = int(input("Choose option:\n1. Hiragana to Romaji.\n2. Romaji to Hiragana.\n3. Quit\n"))
 
         elif self.current_option == 1:
             is_winner = self.__ask_for_romanji()
@@ -41,7 +41,7 @@ class Game():
 
         words = input("Type above stuff in romanji:\n").split()
 
-        hiraganas_from_input = [self.romanji_to_hiragana[word] for word in words]
+        hiraganas_from_input = [self.romaji_to_hiragana[word] for word in words]
 
         corrects = [hiraganas[0][i] == hiraganas_from_input[i] for i in range(len(hiraganas_from_input))]
 

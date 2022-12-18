@@ -1,7 +1,7 @@
 import random
 
 
-class Romanji:
+class Romaji:
     values: list[str] = """
         a i u e o
         ka ki ku ke ko
