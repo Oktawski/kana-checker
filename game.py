@@ -11,10 +11,10 @@ class Game():
             3: "Quit"
         }
 
-        self.hiragana = Hiragana()
+        self.hiragana: Hiragana = Hiragana()
         self.romaji = Romaji()
 
-        self.hiragana_to_romanji = {self.hiragana.values[i]: self.romaji.values[i] for i in range(len(self.romaji.values))}
+        self.hiragana_to_romaji = {self.hiragana.values[i]: self.romaji.values[i] for i in range(len(self.romaji.values))}
         self.romaji_to_hiragana = {self.romaji.values[i]: self.hiragana.values[i] for i in range(len(self.romaji.values))}
 
     
@@ -28,33 +28,39 @@ class Game():
             self.current_option = int(input("Choose option:\n1. Hiragana to Romaji.\n2. Romaji to Hiragana.\n3. Quit\n"))
 
         elif self.current_option == 1:
-            is_winner = self.__ask_for_romaji()
-            print(is_winner)
+            self.__ask_for_romaji()
         
         elif self.current_option == 2:
             self.__ask_for_hiragana()
 
 
     def __ask_for_romaji(self):
-        hiraganas = self.hiragana.get_random_words(5, 1)
-        print("\n" + "".join(hiraganas[0]))
+        try:
+            syllables = self.hiragana.get_random()
+            print("\n" + "".join(syllables))
 
-        words = input("Type above stuff in romaji:\n").split()
+            words = input("Type above stuff in romaji:\n").split()
 
-        hiraganas_from_input = [self.romaji_to_hiragana[word] for word in words]
+            hiraganas_from_input = [self.romaji_to_hiragana[word] for word in words]
 
-        corrects = [hiraganas[0][i] == hiraganas_from_input[i] for i in range(len(hiraganas_from_input))]
+            is_winner = all([syllables[i] == hiraganas_from_input[i] for i in range(len(hiraganas_from_input))])
 
-        is_winner = all(corrects)
+            correct_answer = " ".join([self.hiragana_to_romaji[i] for i in syllables])
 
-        return is_winner
+            self.print_for_winner(is_winner, correct_answer)
+        except KeyError:
+            print("Wrong syllable")
 
 
-    def __ask_for_hiragana():
+
+    def __ask_for_hiragana(self):
         print("Not yet young one")
+        self.current_option = 0
+        self.ask_for_input()
 
-    def print_for_winner(self, is_winner: bool):
+
+    def print_for_winner(self, is_winner: bool, correct_answer = None):
         if (is_winner):
             print("Good job")
         else: 
-            print("LOL no, try again")
+            print("LOL no, try again. Should be: " + correct_answer)

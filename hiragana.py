@@ -13,9 +13,6 @@ class Hiragana:
         や　ゆ　よ        
     """.split()
 
-    def __get_random(self, max_word_length: int) -> list[str]:
+    def get_random(self, max_word_length: int = 8) -> list[str]:
         max_word_length = max_word_length * 2 if max_word_length < 4 else max_word_length 
         return random.sample(self.values, random.randrange(1, max_word_length))
-
-    def get_random_words(self, word_length: int = 8, word_ammount: int = 3) -> list[list[str]]:
-        return [self.__get_random(word_length) for i in range(word_ammount)]
