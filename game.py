@@ -28,18 +28,18 @@ class Game():
             self.current_option = int(input("Choose option:\n1. Hiragana to Romaji.\n2. Romaji to Hiragana.\n3. Quit\n"))
 
         elif self.current_option == 1:
-            is_winner = self.__ask_for_romanji()
+            is_winner = self.__ask_for_romaji()
             print(is_winner)
         
         elif self.current_option == 2:
             self.__ask_for_hiragana()
 
 
-    def __ask_for_romanji(self):
+    def __ask_for_romaji(self):
         hiraganas = self.hiragana.get_random_words(5, 1)
         print("\n" + "".join(hiraganas[0]))
 
-        words = input("Type above stuff in romanji:\n").split()
+        words = input("Type above stuff in romaji:\n").split()
 
         hiraganas_from_input = [self.romaji_to_hiragana[word] for word in words]
 
