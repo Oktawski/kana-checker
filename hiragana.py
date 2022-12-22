@@ -10,7 +10,10 @@ class Hiragana:
         な　に　ぬ　ね　の
         は　ひ　ふ　へ　ほ
         ま　み　む　め　も
-        や　ゆ　よ        
+        や　ゆ　よ   
+        ら　り　る　れ　ろ
+        わ　を
+        ん
     """.split()
 
     def get_random(self, max_word_length: int = 8) -> list[str]:

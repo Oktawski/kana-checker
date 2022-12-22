@@ -11,6 +11,9 @@ class Romaji:
         ha hi fu he ho
         ma mi mu me mo
         ya yu yo    
+        ra ri ru re ro
+        wa wo
+        n
     """.split()
 
     def __get_random(self, max_word_length: int) -> str:
