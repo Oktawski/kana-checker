@@ -14,7 +14,7 @@ class Katakana:
         ラ　リ　ル　レ　ロ
         ワ　ヲ
         ン 
-    """
+    """.split()
 
     def get_random(self, max_word_length: int = 8) -> list[str]:
         max_word_length = max_word_length * 2 if max_word_length < 4 else max_word_length 
