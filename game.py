@@ -1,4 +1,5 @@
 from hiragana import Hiragana
+from katakana import Katakana
 from romaji import Romaji
 
 class Game():
@@ -14,9 +15,11 @@ class Game():
         }
 
         self.hiragana: Hiragana = Hiragana()
+        self.katakana: Katakana = Katakana()
         self.romaji = Romaji()
 
         self.hiragana_to_romaji = {self.hiragana.values[i]: self.romaji.values[i] for i in range(len(self.romaji.values))}
+        self.katakana_to_romaji = {self.katakana.values[i]: self.romaji.values[i] for i in range(len(self.romaji.values))}
         self.romaji_to_hiragana = {self.romaji.values[i]: self.hiragana.values[i] for i in range(len(self.romaji.values))}
 
     
@@ -27,16 +30,16 @@ class Game():
 
     def ask_for_input(self):
         if self.current_option == 0:
-            self.current_option = int(input("Choose option:\n1. Hiragana to Romaji.\n2. Romaji to Hiragana.\n3. Quit\n"))
+            self.current_option = int(input("Choose option:\n1. Hiragana to Romaji.\n2. Katakana to Romaji.\n3. Quit\n"))
 
         elif self.current_option == 1:
-            self.__ask_for_romaji()
+            self.__ask_for_hiragana_to_romaji()
         
         elif self.current_option == 2:
-            self.__ask_for_hiragana()
+            self.__ask_for_katakana_to_romaji()
 
 
-    def __ask_for_romaji(self):
+    def __ask_for_hiragana_to_romaji(self):
         try:
             syllables = self.hiragana.get_random()
             print("\n" + "".join(syllables))
@@ -64,7 +67,7 @@ class Game():
 
 
 
-    def __ask_for_hiragana(self):
+    def __ask_for_katakana_to_romaji(self):
         print("Not yet young one")
         self.current_option = 0
         self.ask_for_input()
